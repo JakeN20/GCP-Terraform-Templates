@@ -1,6 +1,6 @@
 
 output "url" {
-    value = google_storage_bucket.example.url
+  value = google_storage_bucket.example.url
 }
 
 output "object_metadata" {

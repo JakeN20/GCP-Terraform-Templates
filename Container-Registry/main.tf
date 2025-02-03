@@ -18,7 +18,7 @@ resource "google_storage_bucket" "gcr_bucket" {
 # IAM permissions for pushing & pulling images
 resource "google_storage_bucket_iam_binding" "gcr_writer" {
   bucket = google_storage_bucket.gcr_bucket.name
-  role   = "roles/storage.objectAdmin"
+  role   = var.iam_role
 
   members = [
     "serviceAccount:${var.gcr_service_account}"

@@ -10,8 +10,14 @@ variable "region" {
   default     = "US"
 }
 
+variable "iam_role" {
+  description = "IAM role for the service account"
+  type        = string
+  default     = "roles/storage.objectAdmin"
+}
+
 variable "gcr_service_account" {
   description = "Service account for pushing images"
   type        = string
-  default     = "serviceAccount:"
+  default     = "serviceAccounthere"
 }

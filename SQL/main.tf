@@ -2,11 +2,11 @@
 
 ## Create a SQL database instance with a database and user ##
 resource "google_sql_database_instance" "instance-example" {
-  name             = "my-sql-instance"
+  name             = var.sql_server_name
   database_version = "MYSQL_8_0"
   region           = "us-central1"
   settings {
-    tier              = "db-f1-micro"
+    tier              = var.server_tier
     availability_type = "REGIONAL" # "ZONAL" for single, "REGIONAL" for HA
 
     backup_configuration { # If not set, automatic backups are disabled
@@ -29,7 +29,7 @@ resource "google_sql_database_instance" "instance-example" {
 }
 
 resource "google_sql_database" "example_db" {
-  name     = "my-database"
+  name     = var.db_name
   instance = google_sql_database_instance.example.name
 }
 

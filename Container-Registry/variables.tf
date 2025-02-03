@@ -1,7 +1,7 @@
 variable "project_id" {
   description = "GCP Project ID"
   type        = string
-  default = "my-project-id"
+  default     = "my-project-id"
 }
 
 variable "region" {
@@ -13,5 +13,5 @@ variable "region" {
 variable "gcr_service_account" {
   description = "Service account for pushing images"
   type        = string
-  default = "serviceAccount:"
+  default     = "serviceAccount:"
 }

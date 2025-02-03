@@ -34,7 +34,7 @@ resource "google_sql_database" "example_db" {
 }
 
 resource "google_sql_user" "example_user" {
-  name     = "db-user"
+  name     = var.db_user_name
   instance = google_sql_database_instance.example.name
-  password = "my-password" # Store in a secret management system
+  password = var.db_user_password # ***Store in a secret management system***
 }

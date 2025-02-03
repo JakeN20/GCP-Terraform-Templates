@@ -30,3 +30,15 @@ variable "db_name" {
   type        = string
   default     = "my-database"
 }
+
+variable "db_user_name" {
+  description = "database user"
+  type        = string
+  default     = "db-user"
+}
+
+variable "db_user_password" {
+  description = "database user password"
+  type        = string
+  default     = "my-password"
+}

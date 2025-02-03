@@ -10,7 +10,7 @@ resource "google_project_service" "container_registry" {
 resource "google_storage_bucket" "gcr_bucket" {
   name          = "${var.project_id}-gcr"
   location      = var.region
-  storage_class = "STANDARD"
+  storage_class = var.storage_class
 
   uniform_bucket_level_access = true
 }
@@ -18,7 +18,7 @@ resource "google_storage_bucket" "gcr_bucket" {
 # IAM permissions for pushing & pulling images
 resource "google_storage_bucket_iam_binding" "gcr_writer" {
   bucket = google_storage_bucket.gcr_bucket.name
-  role   = var.iam_role
+  role   = var.iam_write_role
 
   members = [
     "serviceAccount:${var.gcr_service_account}"
@@ -27,7 +27,7 @@ resource "google_storage_bucket_iam_binding" "gcr_writer" {
 
 resource "google_storage_bucket_iam_binding" "gcr_reader" {
   bucket = google_storage_bucket.gcr_bucket.name
-  role   = "roles/storage.objectViewer"
+  role   = var.iam_read_role
 
   members = [
     "allAuthenticatedUsers"

@@ -2,20 +2,20 @@
 
 ## Create a Compute Engine instance with an ephemeral IP ##
 resource "google_compute_instance" "example" {
-  name         = "instance-example"
-  machine_type = "e2-micro"
-  zone         = "us-central1-a"
+  name         = var.instance_name
+  machine_type = var.instance_type
+  zone         = var.instance_zone
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
-      size  = 50            # Disk size in GB
-      type  = "pd-standard" # Options: "pd-ssd", "pd-balanced" ..etc
+      image = var.disk_image
+      size  = var.disk_size
+      type  = var.disk_type
     }
   }
 
   network_interface {
-    network = "default" # Change if using a custom VPC
+    network = var.network_name # Change if using a custom VPC
     access_config {}    # Ephemeral IP, required for assigning a public IP
   }
 }
